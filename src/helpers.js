@@ -5,13 +5,19 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
 }
 
-export const randomRotationStyle = () => {
+export const randomRotationStyle = (strongRotationChance, strongRotationAdd) => {
+  let extreme = 0;
+  if (getRandomIntInclusive(1, strongRotationChance) === 1) {
+    extreme = strongRotationAdd;
+  }
   return {
-    transform: `rotate(${getRandomIntInclusive(-5, 5)}deg)`,
+    transform: `rotate(${getRandomIntInclusive(-5 - extreme, 5 + extreme)}deg)`,
   };
 };
 
-export const createRandomRotationStyles = num => {
+export const createRandomRotationStyles = (num, strongRotationChance, strongRotationAdd) => {
   // a good old for loop would probably be quicker though;
-  return new Array(num).fill().map(() => randomRotationStyle());
+  return new Array(num)
+    .fill()
+    .map(() => randomRotationStyle(strongRotationChance, strongRotationAdd));
 };
