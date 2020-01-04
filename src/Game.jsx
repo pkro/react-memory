@@ -1,4 +1,5 @@
 import React from 'react';
+import update from 'immutability-helper';
 import Board from './Board';
 import { createRandomRotationStyles, randomRotationStyle, randomContent } from './helpers';
 import content from './data/cardContent.json';
@@ -19,11 +20,23 @@ export default class Game extends React.Component {
     };
   }
 
+  onCardClick = (event, card) => {
+    const cardsTurned = [...this.state.cardsTurned];
+    cardsTurned[card] = !cardsTurned[card];
+
+    this.setState({ cardsTurned });
+  }
+
   render() {
     const { cards, cardsTurned, cardRotations } = this.state;
     return (
       <div className="board">
-        <Board cards={cards} cardsTurned={cardsTurned} cardRotations={cardRotations} />
+        <Board
+          cards={cards}
+          cardsTurned={cardsTurned}
+          cardRotations={cardRotations}
+          onClick={this.onCardClick}
+        />
       </div>
     );
   }
