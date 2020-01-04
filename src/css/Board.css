@@ -8,5 +8,7 @@
           flex-flow: row wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
 }
 /*# sourceMappingURL=Board.css.map */
