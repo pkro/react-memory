@@ -35,5 +35,5 @@ export const randomContent = (available, num) => {
 export const createDeck = (available, numCards, strongRotationChance, strongRotationAdd) => {
   const styles = createRandomRotationStyles(numCards, strongRotationChance, strongRotationAdd);
   const content = randomContent(available, numCards);
-  return content.map((val, idx) => new CardItem(idx, val, styles[idx], false));
+  return content.map((val, idx) => new CardItem(idx, val, styles[idx]));
 }

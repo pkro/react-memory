@@ -6,8 +6,8 @@ import './css/Board.css';
 function Board({ cards, onClick }) {
   return (
     <div className="board">
-      {cards.map((card) => (
-        <Card card={card} key={card.key} onClick={onClick} />
+      {cards.map((card, idx) => (
+        <Card card={card} key={card.key} idx={idx} onClick={onClick} />
       ))}
     </div>
   );
@@ -15,8 +15,6 @@ function Board({ cards, onClick }) {
 
 Board.propTypes = {
   cards: PropTypes.array.isRequired,
-  cardsTurned: PropTypes.array.isRequired,
-  cardRotations: PropTypes.arrayOf(PropTypes.object).isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

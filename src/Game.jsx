@@ -22,7 +22,7 @@ export default class Game extends React.Component {
 
   onCardClick = (event, card, cardIdx) => {
     event.preventDefault();
-    const { cards, lastCardTurned } = this.state;
+    const { cards } = this.state;
     if (!card.isFlipped) {
       cards[cardIdx].isFlipped = true;
       cards[cardIdx].style = randomRotationStyle(strongRotationChance, strongRotationAdd);
@@ -32,7 +32,10 @@ export default class Game extends React.Component {
   }
 
   gameLogic = () => {
-    console.log("running game logic");
+    console.log('running game logic');
+    const { cards } = this.state;
+    const openCards = cards.filter(card => card.isFlipped);
+    // toDo: set openCards with same values to invisile
   }
 
   render() {
