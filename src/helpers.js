@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 function getRandomIntInclusive(min, max) {
   const myMin = Math.ceil(min);
   const myMax = Math.floor(max);
@@ -20,4 +22,8 @@ export const createRandomRotationStyles = (num, strongRotationChance, strongRota
   return new Array(num)
     .fill()
     .map(() => randomRotationStyle(strongRotationChance, strongRotationAdd));
+};
+
+export const randomContent = (available, num) => {
+  return _.shuffle(available).slice(0, num);
 };

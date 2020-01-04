@@ -7,7 +7,7 @@ function Card({ content, style }) {
   return (
     <div className="cardOuterDiv">
       <div className="card" style={style}>
-        Card {content}
+        {content}
       </div>
     </div>
 
@@ -15,7 +15,7 @@ function Card({ content, style }) {
 }
 
 Card.propTypes = {
-  content: PropTypes.object.isRequired,
+  content: PropTypes.string.isRequired,
   style: PropTypes.object,
 };
 

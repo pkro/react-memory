@@ -1,16 +1,19 @@
 import React from 'react';
 import Board from './Board';
-import { createRandomRotationStyles, randomRotationStyle } from './helpers';
+import { createRandomRotationStyles, randomRotationStyle, randomContent } from './helpers';
+import content from './data/cardContent.json';
 
-const numCards = 36;
+const numCards = 24;
 const strongRotationChance = 10;
 const strongRotationAdd = 8;
+const cardContent = content.emoticons;
+
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       playersTurn: true,
-      cards: new Array(numCards).fill().map((val, idx) => idx),
+      cards: randomContent(cardContent, numCards),
       cardsTurned: new Array(numCards).fill(false),
       cardRotations: createRandomRotationStyles(numCards, strongRotationChance, strongRotationAdd),
     };
