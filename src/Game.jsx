@@ -22,12 +22,13 @@ export default class Game extends React.Component {
 
   onCardClick = (event, card) => {
     event.preventDefault();
-    const { cardsTurned, cards } = this.state;
+    const { cardsTurned, cardRotations, cards } = this.state;
     let otherCardIsTurned = false;
 
     if (!cardsTurned[card]) {
       cardsTurned[card] = true;
-      this.setState({ cardsTurned });
+      cardRotations[card] = randomRotationStyle(strongRotationChance, strongRotationAdd);
+      this.setState({ cardsTurned, cardRotations });
     }
     /*
       for (let i = 0; i < cards.length; i++) {
