@@ -9,7 +9,7 @@ function Board({ cards, cardsTurned, cardRotations, onClick }) {
       {cards.map((val, idx) => (
         <Card
           content={val}
-          key={val}
+          key={idx}
           cardIdx={idx}
           style={cardRotations[idx]}
           isTurned={cardsTurned[idx]}
