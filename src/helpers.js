@@ -1,4 +1,5 @@
 import _ from 'underscore';
+import CardItem from './CardItem';
 
 function getRandomIntInclusive(min, max) {
   const myMin = Math.ceil(min);
@@ -28,4 +29,11 @@ export const randomContent = (available, num) => {
   let selectedContent = _.shuffle(available).slice(0, num / 2);
   selectedContent = selectedContent.concat(selectedContent);
   return _.shuffle(selectedContent);
+
 };
+
+export const createDeck = (available, numCards, strongRotationChance, strongRotationAdd) => {
+  const styles = createRandomRotationStyles(numCards, strongRotationChance, strongRotationAdd);
+  const content = randomContent(available, numCards);
+  return content.map((val, idx) => new CardItem(idx, val, styles[idx], false));
+}

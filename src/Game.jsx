@@ -1,7 +1,8 @@
 import React from 'react';
 import update from 'immutability-helper';
+import CardItem from './CardItem'
 import Board from './Board';
-import { createRandomRotationStyles, randomRotationStyle, randomContent } from './helpers';
+import { createDeck, randomRotationStyle } from './helpers';
 import content from './data/cardContent.json';
 
 const numCards = 24;
@@ -14,49 +15,30 @@ export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: randomContent(cardContent, numCards),
-      cardsTurned: new Array(numCards).fill(false),
-      cardRotations: createRandomRotationStyles(numCards, strongRotationChance, strongRotationAdd),
+      cards: createDeck(cardContent, numCards, strongRotationChance, strongRotationAdd),
+      lastCardTurned: new CardItem(0, '0', '0', false),
     };
   }
 
-  onCardClick = (event, card) => {
+  onCardClick = (event, card, cardIdx) => {
     event.preventDefault();
-    const { cardsTurned, cardRotations, cards } = this.state;
-    let otherCardIsTurned = false;
-
-    if (!cardsTurned[card]) {
-      cardsTurned[card] = true;
-      cardRotations[card] = randomRotationStyle(strongRotationChance, strongRotationAdd);
-      this.setState({ cardsTurned, cardRotations });
+    const { cards, lastCardTurned } = this.state;
+    if (!card.isFlipped) {
+      cards[cardIdx].isFlipped = true;
+      this.setState(state => update(state, { cards: { $set: cards } }));
+      this.gameLogic();
     }
-    /*
-      for (let i = 0; i < cards.length; i++) {
-        if (cardsTurned[i]) {
-          otherCardIsTurned = true;
-          break;
-        }
-      }
-  
-      if (!otherCardIsTurned) {
-        setTimeout(() => {
-          cardsTurned[card] = false;
-          this.setState({ cardsTurned });
-        }, secondsToViewTurnedCard * 1000);
-      }
-    */
+  }
+
+  gameLogic = () => {
+    console.log("running game logic");
   }
 
   render() {
-    const { cards, cardsTurned, cardRotations } = this.state;
+    const { cards } = this.state;
     return (
       <div className="board">
-        <Board
-          cards={cards}
-          cardsTurned={cardsTurned}
-          cardRotations={cardRotations}
-          onClick={this.onCardClick}
-        />
+        <Board cards={cards} onClick={this.onCardClick} />
       </div>
     );
   }

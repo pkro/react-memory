@@ -1,29 +1,27 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import PropTypes from 'prop-types';
+import CardItem from './CardItem';
 
 import './css/Card.css';
 
-function Card({ content, cardIdx, style, isTurned, onClick }) {
+function Card({ card, onClick }) {
   return (
     <div className="cardOuterDiv">
       <div
-        className={isTurned ? 'card' : 'back'}
-        style={style}
-        onClick={$event => onClick($event, cardIdx)}
+        className={card.isFlipped ? 'card' : 'back'}
+        style={card.style}
+        onClick={$event => onClick($event, card, card.key)}
       >
-        {isTurned && content}
+        {card.isFlipped && card.visibleContent}
       </div>
     </div>
-
   );
 }
 
 Card.propTypes = {
-  content: PropTypes.string.isRequired,
-  style: PropTypes.object.isRequired,
-  isTurned: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
-  cardIdx: PropTypes.number.isRequired,
+  card: PropTypes.objectOf(CardItem).isRequired,
 };
 
 export default Card;

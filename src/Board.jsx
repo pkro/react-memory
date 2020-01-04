@@ -3,18 +3,11 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import './css/Board.css';
 
-function Board({ cards, cardsTurned, cardRotations, onClick }) {
+function Board({ cards, onClick }) {
   return (
     <div className="board">
-      {cards.map((val, idx) => (
-        <Card
-          content={val}
-          key={idx}
-          cardIdx={idx}
-          style={cardRotations[idx]}
-          isTurned={cardsTurned[idx]}
-          onClick={onClick}
-        />
+      {cards.map((card) => (
+        <Card card={card} key={card.key} onClick={onClick} />
       ))}
     </div>
   );
