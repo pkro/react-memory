@@ -25,5 +25,7 @@ export const createRandomRotationStyles = (num, strongRotationChance, strongRota
 };
 
 export const randomContent = (available, num) => {
-  return _.shuffle(available).slice(0, num);
+  let selectedContent = _.shuffle(available).slice(0, num / 2);
+  selectedContent = selectedContent.concat(selectedContent);
+  return _.shuffle(selectedContent);
 };
