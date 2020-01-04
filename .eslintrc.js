@@ -21,7 +21,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-      'react',
+    'react',
     'prettier'
   ],
   rules: {
@@ -29,6 +29,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/jsx-indent': ["error", 2],
     'react/jsx-indent-props': ["error", 2],
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
+    'react/forbid-prop-types': 0,
   },
 };
