@@ -1,12 +1,22 @@
 import React from 'react';
-import './Card.css';
+import PropTypes from 'prop-types';
 
-function Card({ content }) {
+import './css/Card.css';
+
+function Card({ content, style }) {
   return (
-    <div className="card">
-      Card {content}
+    <div className="cardOuterDiv">
+      <div className="card" style={style}>
+        Card {content}
+      </div>
     </div>
+
   );
 }
+
+Card.propTypes = {
+  content: PropTypes.object.isRequired,
+  style: PropTypes.object,
+};
 
 export default Card;
