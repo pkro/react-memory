@@ -8,12 +8,12 @@ const numCards = 24;
 const strongRotationChance = 10;
 const strongRotationAdd = 8;
 const cardContent = content.emoticons;
+const secondsToViewTurnedCard = 2;
 
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playersTurn: true,
       cards: randomContent(cardContent, numCards),
       cardsTurned: new Array(numCards).fill(false),
       cardRotations: createRandomRotationStyles(numCards, strongRotationChance, strongRotationAdd),
@@ -21,10 +21,29 @@ export default class Game extends React.Component {
   }
 
   onCardClick = (event, card) => {
-    const cardsTurned = [...this.state.cardsTurned];
-    cardsTurned[card] = !cardsTurned[card];
+    event.preventDefault();
+    const { cardsTurned, cards } = this.state;
+    let otherCardIsTurned = false;
 
-    this.setState({ cardsTurned });
+    if (!cardsTurned[card]) {
+      cardsTurned[card] = true;
+      this.setState({ cardsTurned });
+    }
+    /*
+      for (let i = 0; i < cards.length; i++) {
+        if (cardsTurned[i]) {
+          otherCardIsTurned = true;
+          break;
+        }
+      }
+  
+      if (!otherCardIsTurned) {
+        setTimeout(() => {
+          cardsTurned[card] = false;
+          this.setState({ cardsTurned });
+        }, secondsToViewTurnedCard * 1000);
+      }
+    */
   }
 
   render() {
