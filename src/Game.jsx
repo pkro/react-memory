@@ -25,6 +25,7 @@ export default class Game extends React.Component {
     const { cards, lastCardTurned } = this.state;
     if (!card.isFlipped) {
       cards[cardIdx].isFlipped = true;
+      cards[cardIdx].style = randomRotationStyle(strongRotationChance, strongRotationAdd);
       this.setState(state => update(state, { cards: { $set: cards } }));
       this.gameLogic();
     }
