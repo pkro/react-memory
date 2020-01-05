@@ -31,5 +31,6 @@ module.exports = {
     'react/jsx-indent-props': ["error", 2],
     'react/jsx-props-no-spreading': 'off',
     'react/forbid-prop-types': 0,
+    'allowForLoopAfterthoughts': true,
   },
 };
