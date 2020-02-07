@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './css/Card.css';
+import './css/Card.scss';
 
 function Card({ card, idx, onClick }) {
   //const style = { ...card.style, visibility: card.visible ? 'visible' : 'hidden' };
